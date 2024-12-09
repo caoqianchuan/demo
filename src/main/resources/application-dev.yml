@@ -1,0 +1,47 @@
+spring:
+  aop:
+    auto: true
+  datasource:
+    primary:
+      url: jdbc:mysql://localhost:3306/baodane?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      username: baodane
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    secondary:
+      url: jdbc:mysql://localhost:3306/baodane_bak?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      #username: root
+      password: "123456" # 如果没有密码，保持为空
+      database: 0  # 指定 Redis 使用的数据库，默认是 0
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: baodane
+    password: 123456
+    virtual-host: /
+    listener:
+      simple:
+        concurrency: 1
+        max-concurrency: 10
+        retry:
+          max-attempts: 3
+          max-interval: 1000ms
+
