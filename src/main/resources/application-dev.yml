@@ -45,3 +45,11 @@ spring:
           max-attempts: 3
           max-interval: 1000ms
 
+developer:
+  id: developer1  # 开发者标识，每个开发者设置自己的唯一 ID
+rabbitmq:
+  exchange: myapp-exchange-${developer.id} # 按开发者标识命名交换机
+  queue: myapp-queue-${developer.id}       # 按开发者标识命名队列
+  routing-key: myapp-routing-${developer.id} # 按开发者标识设置路由键
+
+
